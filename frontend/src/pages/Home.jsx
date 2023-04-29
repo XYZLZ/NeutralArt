@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {Loader, Search, RenderCards} from '../components';
 import { useNavigate } from 'react-router-dom';
 import {Header} from '../components';
-import {fetchPosts} from '../services'
+import {fetchPosts, headerToken} from '../services'
 
 
 
@@ -13,16 +13,15 @@ const Home = () => {
     const [searchText, setSearchText] = useState('');
     const [searchResults, setSearchResults] = useState(null);
     const [searchTimeOut, setSearchTimeOut] = useState(null);
-    const headerToken = sessionStorage.getItem('token');
     const navigate = useNavigate();
 
     useEffect(()=>{
 
         if(!headerToken){
-            navigate('/login');
+            navigate('/');
         }
 
-        // location.reload();
+        
         fetchPosts(setLoading, setAllPost);
         
     }, [])

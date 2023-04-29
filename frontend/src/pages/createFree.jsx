@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom';
 import {preview} from '../assets';
 import {FormField, Loader} from '../components';
-import {convertBase64} from '../utils'
+import {convertBase64, SuccessAlert} from '../utils'
 import {headerToken} from '../services'
 
 
 const createFree = () => {
-    const [generatingImg, setGeneratingImg] = useState(false);
+    // const [generatingImg, setGeneratingImg] = useState(false);
     const [loading, setLoading] = useState(false)
     const [loadingPrivate, setLoadingPrivate] = useState(false)
     // const [categories, setCategories] = useState(null);
@@ -58,19 +58,22 @@ const createFree = () => {
 
 
     const handleConvert = async(e) => {
-        // console.log(e.target);
-        if (e.target.files[0].size > 1048576) {
+        const fileTarget = e.target.files[0]; 
+
+        if (fileTarget.size > 1048576) {
             e.target.value = '';
-            alert('the maximum size is 1MB');
+            SuccessAlert("Wrong size", 'the maximum size is 1MB', 'warning', 5000);
             return false
-        }else if(e.target.files[0].type != 'image/jpeg' || e.target.files[0].type != 'image/png') {
-            alert('this type of file is not allowed');
+        }else if(fileTarget.type == 'image/jpeg' || fileTarget.type == 'image/png' || fileTarget.type == 'image/jpeg') {
+            
+            const base64 = await convertBase64(e.target.files[0]);
+            setForm({...form, photo:base64})
+        }else{
+            SuccessAlert('Wrong file', 'this type of file is not allowed. Only jpg/jpeg/png files', 'warning', 5000)
             e.target.value = '';
             return false
         }
-        const base64 = await convertBase64(e.target.files[0]);
         // console.log(base64);
-        setForm({...form, photo:base64})
             
     }
 
@@ -160,11 +163,11 @@ const createFree = () => {
                     <img src={preview} alt="preview" className='w-9/12 object-contain opacity-40' />
                 )}
 
-                {generatingImg && (
+                {/* {generatingImg && (
                     <div className='absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,.5)] rounded-lg'>
                     <Loader/>
                     </div>
-                )}
+                )} */}
                 </div>
             </div>
             <div className='mt-5 flex gap-5'>

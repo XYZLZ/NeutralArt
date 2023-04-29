@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import {unconfirmed} from '../assets'
+import {api_url, headerToken} from '../services'
 
 const Register = () => {
 
@@ -10,7 +11,7 @@ const Register = () => {
     const [error, setError] = useState('');
 
     useEffect(()=>{
-        if (sessionStorage.getItem('token')) {
+        if (headerToken) {
         navigate('/home');
         }
     },[])
@@ -18,7 +19,7 @@ const Register = () => {
         const handleSubmit = async(e) => {
             e.preventDefault();
             try {
-            const url = 'http://localhost:7000/api/v1/user'
+            const url = `${api_url}user`
         
             const req = await fetch(url, {
                 method:'POST',

@@ -20,8 +20,8 @@ const Logout = ({headerToken, propClass}) => {
                 sessionStorage.removeItem('user');
                 sessionStorage.removeItem('userEmail');
                 sessionStorage.removeItem('memberType');
-                // window.location.reload();
-                navigate('/login');
+                // navigate('/login');
+                window.location.replace('http://localhost:5173/login');
             }
         } catch (error) {
             console.log(error);

@@ -50,7 +50,8 @@ const login = () => {
             sessionStorage.setItem('user', res.user.user);
             sessionStorage.setItem('userEmail', res.user.email);
             sessionStorage.setItem('memberType', res.user.memberType);
-            navigate('/home');
+            // navigate('/home');
+            window.location.replace('http://localhost:5173/home');
         }
 
         } catch (error) {
