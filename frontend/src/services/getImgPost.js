@@ -1,10 +1,9 @@
-// import { useNavigate } from 'react-router-dom';
 import {headerToken, api_url} from './config'
 
 
 const getImgPost = async(id, setter) => {
     if (!id || id == '') {
-        window.location.href = 'http://localhost:5173/home'
+        window.location.replace('http://localhost:5173/home');
     }
 
     try {
@@ -17,7 +16,7 @@ const getImgPost = async(id, setter) => {
         const data = await res.json();
 
         // setter(data.data);
-        setter({...data.data, newDate:()=>{
+        setter({...data.data,  newDate:()=>{
             const currentDate = new Date(data.data.createdAt);
             const newDate = currentDate.toLocaleDateString('es-MX', {
                 year:'numeric',
@@ -27,7 +26,8 @@ const getImgPost = async(id, setter) => {
 
             return newDate
         }})
-        // console.log(data);
+        console.log(data);
+        console.log(data.data.owner._id);
         return data.data
     } catch (error) {
         console.log(error);

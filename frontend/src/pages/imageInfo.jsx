@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import {Header, Search, Loader, RenderCards, RenderConments, ConmentForm} from '../components/';
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import {Testimonial, Copy, Done, Heart, HeartColor} from '../images'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { downloadImage } from '../utils';
 import { download } from '../assets';
-import {getImgPost, getConments,  setLikes, getLikes, headerToken} from '../services'
+import {getImgPost, getConments,  setLikes, getLikes, headerToken, userId} from '../services'
 
 
 const imageInfo = () => {
@@ -20,6 +20,7 @@ const imageInfo = () => {
     const [copy, setCopy] = useState(false);
     const [heart, setHeart] = useState({state:false, counter:0});
     const [affectedConment, setAffectedConment] = useState({type:'', _id:''});
+    const navigate = useNavigate();
 
     const handleNewConment = async(e) => {
         e.preventDefault();
@@ -76,14 +77,20 @@ const imageInfo = () => {
 
 
     useEffect(()=>{
-        if (!headerToken) {
-            window.location.replace('http://localhost:5173/login'); 
-            navigate('/home');  
-        }
-        getImgPost(id, setData);
-        fetchPosts();
-        getConments(setConments, id);
-        getLikes(setHeart, id);
+        (async()=>{
+            if (!headerToken) {
+                window.location.replace('http://localhost:5173/login'); 
+                
+            }
+            const {isGlobal, owner} = await getImgPost(id, setData);
+    
+            if (isGlobal == false && owner._id != userId) {
+                navigate('/home');
+            }
+            await fetchPosts();
+            await getConments(setConments, id);
+            await getLikes(setHeart, id);
+        })();
     }, [id])
     return (
         <>
@@ -91,7 +98,7 @@ const imageInfo = () => {
         <Header/>
         <section className='max-w  mx-auto px-4 py-8'>
 
-            <div className=' p-2 mt-10 flex overflow-hidden flex-col lg:flex-row mx-10 md:mx-20 lg:mx-40 rounded-md items-center justify-between bg-white  shadow-lg'>
+            <div className=' p-2 mt-16 flex overflow-hidden flex-col lg:flex-row mx-10 md:mx-20 lg:mx-40 rounded-md items-center justify-between bg-white  shadow-lg'>
                 <div>
                 <img src={data.photo} alt={data.photoName} className=' lg:w-[700px] lg:h-[700px] object-cover max-w-[800px] h-full mb-7 lg:mb-0 rounded-md rounded-r-[0px]'/>
                 </div>

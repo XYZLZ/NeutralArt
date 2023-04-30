@@ -127,7 +127,7 @@ const deleteUser = async(req , res) => {
             return res.status(404).json({message:'User Not found'})   
         }
 
-        await Post.deleteMany({owner:req.user._id})
+        await Post.deleteMany({isGlobal:false, owner:req.user._id})
 
         res.status(200).json({
             success:'User Deleted successfuly',

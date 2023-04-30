@@ -66,7 +66,7 @@ router.route('/this/:id').get(auth, async (req, res) => {
     try {
         const posts = await Post.findById(req.params.id).populate('owner', {
             avatar:1,
-            _id:0
+            _id:1
         });
         res.status(200).json({ success: true, data: posts });
     } catch (err) {

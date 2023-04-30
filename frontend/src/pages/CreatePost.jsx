@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom';
 import {preview} from '../assets';
-import {getRandomPrompt} from '../utils';
-import {FormField, Loader, Header} from '../components';
+import {SuccessAlert, getRandomPrompt} from '../utils';
+import {FormField, Loader} from '../components';
 import {headerToken, memberType} from '../services'
 
 const CreatePost = () => {
@@ -65,7 +65,7 @@ const CreatePost = () => {
         setGeneratingImg(false);
       }
     } else {
-      alert('please enter a prompt')
+      SuccessAlert('Warning', 'please enter a prompt', 'warning', 7000)
     }
   }
 
@@ -93,7 +93,7 @@ const CreatePost = () => {
           setLoading(false);
         }
       } else{
-        alert('please enter a prompt and generate an image')
+        SuccessAlert('Warning', 'please enter a prompt and upload an image', 'warning', 7000)
       }
   }
 
@@ -121,7 +121,7 @@ const CreatePost = () => {
         setLoadingPrivate(false);
       }
     } else{
-      alert('please enter a prompt and generate an image')
+      SuccessAlert('Warning', 'please enter a prompt and upload an image', 'warning', 7000)
     }
   }
 

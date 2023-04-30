@@ -16,6 +16,7 @@ const Card = ({
   category,
   avatar,
   isWithAI,
+  isGlobal
 }) => {
   // console.log(avatar?.avatar);
   const navigate = useNavigate();
@@ -40,6 +41,13 @@ const Card = ({
         <div className="group-hover:flex flex-col max-h-[94.5%] hidden absolute top-0 left-0 bg-[#10131f] m-2 p-4 rounded-md">
           <div>
             <p className="text-white text-sm overflow-y-auto font-medium">AI</p>
+          </div>
+        </div>
+      )}
+      {isGlobal === false && (
+        <div className="group-hover:flex flex-col max-h-[94.5%] hidden absolute top-0 right-0 bg-[#10131f] m-2 p-4 rounded-md">
+          <div>
+            <p className="text-white text-sm overflow-y-auto font-medium cursor-pointer">Share</p>
           </div>
         </div>
       )}

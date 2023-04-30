@@ -85,7 +85,7 @@ const createFree = () => {
             setLoadingPrivate(true);
                 if (form.category == 'none' || form.category == undefined) {
                     setLoadingPrivate(false);  
-                    return alert('select a category');  
+                    return SuccessAlert('Category', 'select a category', 'warning', 4000);  
                 }
 
             try {
@@ -106,7 +106,7 @@ const createFree = () => {
                 setLoadingPrivate(false);
             }
             } else{
-            alert('please enter a prompt and generate an image')
+                SuccessAlert('Warning', 'please enter a prompt and upload an image', 'warning', 7000)
             }
     }
     
@@ -138,7 +138,7 @@ const createFree = () => {
                 setLoading(false);
                 }
             } else{
-                alert('please enter a prompt and generate an image')
+                SuccessAlert('Warning', 'please enter a prompt and upload an image', 'warning', 7000)
             }
     }
 

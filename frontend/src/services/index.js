@@ -1,4 +1,4 @@
-import { api_url, headerToken, memberType, user, userEmail} from "./config";
+import { api_url, headerToken, memberType, user, userEmail, userId} from "./config";
 import { fetchPosts, fetchPostsPrivate } from "./fetchPosts";
 import { getAvatar } from "./getAvatar";
 import { getImgPost } from "./getImgPost";
@@ -14,6 +14,7 @@ export {
   memberType,
   user,
   userEmail,
+  userId,
   fetchPosts,
   fetchPostsPrivate,
   getAvatar,
