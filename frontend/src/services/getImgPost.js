@@ -26,8 +26,7 @@ const getImgPost = async(id, setter) => {
 
             return newDate
         }})
-        console.log(data);
-        console.log(data.data.owner._id);
+        // console.log(data);
         return data.data
     } catch (error) {
         console.log(error);

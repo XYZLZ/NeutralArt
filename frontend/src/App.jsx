@@ -25,6 +25,7 @@ const CreateFree = lazy(()=> import('./pages/CreateFree'));
 const Plans = lazy(()=> import('./pages/Plans'));
 const ConfirmEmail = lazy(()=> import('./pages/ConfirmEmail'));
 const NotFound = lazy(()=> import('./pages/NotFound'));
+const ConfirmRegister = lazy(()=> import('./pages/ConfirmRegister'));
 
 import "./index.css";
 import { Loader } from "./components";
@@ -46,6 +47,7 @@ function App() {
             <Route path="/register" Component={Register} />
             <Route path="/image/:id" Component={imageInfo} />
             <Route path="/plans" Component={Plans} />
+            <Route path="/confirmR" Component={ConfirmRegister} />
             <Route path="/confirm" Component={ConfirmEmail} />
             <Route path="*" Component={NotFound} />
           </Routes>

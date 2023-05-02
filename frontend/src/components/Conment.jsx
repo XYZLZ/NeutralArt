@@ -153,7 +153,7 @@ const Conment = ({
                 if (res) getConments(setConments, postId);
                 affectedConment.type = "";
               }}
-              placeholder={"Edit this conment"}
+              placeholder={"Edit this comment"}
               formCancel={{
                 state: true,
                 func() {
@@ -162,25 +162,6 @@ const Conment = ({
               }}
             />
           )}
-          {/* {affectedConment?.type === "delete" && userId === id && (
-            
-            <p className="text-blue-900">
-              deletign
-              {(async()=>{
-              areYouSureAlert().then(async(res)=> {
-                if (res.isConfirmed) {
-                  const isDelComment = await delConment(_id);
-
-                  if (isDelComment) {
-                    SuccessAlert('Delete Comment', 'Comment deleted successfuly');
-                    getConments(setConments, postId);
-                  }
-                }
-              })
-            })()}
-            </p>
-
-          )} */}
 
           {replies.length > 0 && repliesArr}
         </div>

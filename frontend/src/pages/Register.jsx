@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
-import Swal from 'sweetalert2'
-import {unconfirmed} from '../assets'
 import {api_url, headerToken} from '../services'
 
 const Register = () => {
@@ -41,12 +39,7 @@ const Register = () => {
             }
         
             if (res.newUser) {
-                Swal.fire({
-                    title:'Thank you for your registration',
-                    html:`<p class='text-gray-400 text-justify'>We have send you a confirmation email to <span class='text-gray-700 font-medium'>${res.newUser.email}</span>. Please confirm your email address to active your account.</p>`,
-                    imageUrl:`${unconfirmed}`,
-                    imageWidth:'60%'
-                })
+                navigate(`/confirmR?userEmail=${res.newUser.email}`);
             }
             
             return res

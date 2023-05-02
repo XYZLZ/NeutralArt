@@ -85,6 +85,7 @@ const Profile = () => {
                                         sessionStorage.removeItem('userId');
                                         sessionStorage.removeItem('user');
                                         sessionStorage.removeItem('userEmail');
+                                        sessionStorage.removeItem('memberType');
                                         navigate('/');
                                     }else{
                                         SuccessAlert('Delete User', 'unauthorized email', 'warning');

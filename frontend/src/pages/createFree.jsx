@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {preview} from '../assets';
 import {FormField, Loader} from '../components';
 import {convertBase64, SuccessAlert} from '../utils'
-import {headerToken} from '../services'
+import {headerToken, api_url} from '../services'
 
 
 const createFree = () => {
@@ -16,7 +16,7 @@ const createFree = () => {
 
     const getUser = async(e) => {
         try {
-            const res = await fetch(`http://localhost:7000/api/v1/user/id`, {
+            const res = await fetch(`${api_url}user/id`, {
             headers:{
                 'authorization':`Bearer ${headerToken}`,
             }
@@ -152,7 +152,7 @@ const createFree = () => {
             </div>
             <form method='post' className='mt-16 max-w text-3xl' onSubmit={handleSubmit}>
             <div className='flex flex-col gap-5'>
-                <FormField isDisabled LabelName='User Name' type='text' name='name' placeholder='Write your name' value={form.name} handleChange={handleChange}/>
+                <FormField isDisabled LabelName='User Name' type='text' name='name' placeholder='Write your name' value={form.name} />
                 <FormField  LabelName='Photo Name' type='text' name='photoName' placeholder='Write the name for your image' value={form.photoName} handleChange={handleChange}/>
                 <FormField   isMultiple LabelName='Category'  name='category'  value={form.category} handleChange={handleChange}/>
                 <FormField LabelName='prompt' type='text' name='prompt' placeholder='Write your prompt' value={form.prompt} handleChange={handleChange}/>
