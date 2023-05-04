@@ -4,8 +4,9 @@ import { downloadImage } from "../utils";
 import { Copy, Done, Heart, HeartColor } from "../images";
 import { ChatBubbleBottomCenterIcon } from "@heroicons/react/24/outline";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation} from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import {userId} from '../services';
 
 const Card = ({
   _id,
@@ -20,6 +21,7 @@ const Card = ({
 }) => {
   // console.log(avatar?.avatar);
   const navigate = useNavigate();
+  const location = useLocation();
   const [copy, setCopy] = useState(false);
   const [heart, setHeart] = useState(false);
   return (
@@ -44,7 +46,7 @@ const Card = ({
           </div>
         </div>
       )}
-      {isGlobal === false && (
+      {isGlobal === false && location.pathname != '/' &&(
         <div className="group-hover:flex flex-col max-h-[94.5%] hidden absolute top-0 right-0 bg-[#10131f] m-2 p-4 rounded-md">
           <div>
             <p className="text-white text-sm overflow-y-auto font-medium cursor-pointer">Share</p>

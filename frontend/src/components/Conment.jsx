@@ -29,11 +29,18 @@ const Conment = ({
         key={conment._id}
         className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg max-w-md"
       >
-        <img
-          src={conment.postedBy?.avatar}
-          alt="User profile"
-          className="w-9 h-9 object-cover rounded-full"
-        />
+        {conment.postedBy?.avatar?(
+          <img
+            src={conment.postedBy?.avatar}
+            alt="User profile"
+            className="w-9 h-9 object-cover rounded-full"
+          />
+
+        ):(
+          <div className="w-9 h-9 rounded-full bg-green-400">
+          <p className="text-center text-white">{conment.postedBy?.name[0]}</p>
+          </div>
+        )}
 
         <div className="flex-1 flex flex-col">
           <h5 className="font-bold text-black text-xs">
@@ -58,11 +65,17 @@ const Conment = ({
   return (
     <>
       <div className="flex flex-nowrap items-start gap-x-3 bg-[#F2F4F5] p-3 rounded-lg max-w-md">
-        <img
-          src={avatar}
-          alt="User profile"
-          className="w-9 h-9 object-cover rounded-full"
-        />
+        {avatar?(
+          <img
+            src={avatar}
+            alt="User profile"
+            className="w-9 h-9 object-cover rounded-full"
+          />
+        ):(
+          <div className="w-9 h-9 rounded-full bg-green-400">
+          <p className="text-center text-white">{name[0]}</p>
+          </div>
+        )}
 
         <div className="flex-1 flex flex-col">
           <h5 className="font-bold text-black text-xs">{name}</h5>

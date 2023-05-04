@@ -33,9 +33,10 @@ const createUser = async(req, res) => {
         return res.status(400).json({message:'plese enter a valid user, email and pass (only 3 fields)'})
     }
 
-    const existUser = await UserModel.findOne({email}) || null
+    const existUser = await UserModel.findOne({user}) || null
+    const existUserEmail = await UserModel.findOne({email}) || null
 
-    if (existUser !== null) {
+    if (existUser !== null || existUserEmail !== null) {
         return res.status(400).json({message:'User exist plese try to login'})
     }
 

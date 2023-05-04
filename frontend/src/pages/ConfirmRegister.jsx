@@ -22,13 +22,7 @@ const ConfirmRegister = ({email}) => {
                 <h1 className='text-gray-700 font-bold text-3xl'>Thank you for your registration</h1>
                 <p className='text-gray-400 px-10 text-justify'>We have send you a confirmation email to <span className='text-gray-700 font-medium'>{userEmail}</span>. Please confirm your email address to active your account.</p>
                 <button type='button' className='landing__btn' onClick={()=> {
-                    // Swal.fire({
-                    //     title:'Thank you for your registration',
-                    //     html:`<p class='text-gray-400 text-justify'>We have send you a confirmation email to <span class='text-gray-700 font-medium'>email@gmail.com</span>. Please confirm your email address to active your account.</p>`,
-                    //     imageUrl:`${unconfirmed}`,
-                    //     imageWidth:'60%'
-                    // })
-                    navigate('/login');
+                    window.location.replace('http://localhost:5173/login');
                 }}>Go to login</button>
             </div>
         </div>

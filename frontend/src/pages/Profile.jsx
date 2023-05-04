@@ -86,7 +86,8 @@ const Profile = () => {
                                         sessionStorage.removeItem('user');
                                         sessionStorage.removeItem('userEmail');
                                         sessionStorage.removeItem('memberType');
-                                        navigate('/');
+                                        // navigate('/');
+                                        location.reload();
                                     }else{
                                         SuccessAlert('Delete User', 'unauthorized email', 'warning');
                                     }
@@ -105,18 +106,20 @@ const Profile = () => {
         }
 
         const handleConvert = async(e) => {
-            if (e.target.files[0].size > 1048576) {
+            const fileTarget = e.target.files[0];
+            if (fileTarget.size > 1048576) {
                 e.target.value = '';
-                alert('the maximum size is 1MB');
+                SuccessAlert("Wrong size", 'the maximum size is 1MB', 'warning', 5000);
                 return false
-            }else if(e.target.files[0].type != 'image/jpeg' || e.target.files[0].type != 'image/png') {
-                alert('this type of file is not allowed');
+            }else if(fileTarget.type == 'image/jpeg' || fileTarget.type == 'image/png' || fileTarget.type == 'image/jpeg') {
+                const base64 = await convertBase64(e.target.files[0]);
+                setData({...data, avatar:base64})
+            }else{
+                SuccessAlert('Wrong file', 'this type of file is not allowed. Only jpg/jpeg/png files', 'warning', 5000)
                 e.target.value = '';
                 return false
             }
-            const base64 = await convertBase64(e.target.files[0]);
             // console.log(base64);
-            setData({...data, avatar:base64})
         
         }
 

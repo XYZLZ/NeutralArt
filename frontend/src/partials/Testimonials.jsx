@@ -24,7 +24,7 @@ const Testimonials = () => {
                 </div>
                 <figcaption className='text-white font-semibold'>
                   <div>Sarah Lopez</div>
-                  <div className='opacity-70 capitalize'>graphic Sesigner</div>
+                  <div className='opacity-70 capitalize'>Graphic Designer</div>
                 </figcaption>
               </div>
             </div>
@@ -43,7 +43,7 @@ const Testimonials = () => {
                 </div>
                 <figcaption className='text-white font-semibold'>
                   <div>Alex Hernandez</div>
-                  <div className='opacity-70 capitalize'>marketing professional</div>
+                  <div className='opacity-70 capitalize'>Marketing Professional</div>
                 </figcaption>
               </div>
             </div>
@@ -62,7 +62,7 @@ const Testimonials = () => {
                 </div>
                 <figcaption className='text-white font-semibold'>
                   <div>Michael Frias</div>
-                  <div className='opacity-70'> professional photographer</div>
+                  <div className='opacity-70'> Professional Photographer</div>
                 </figcaption>
               </div>
             </div>
