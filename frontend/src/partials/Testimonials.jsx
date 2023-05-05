@@ -1,5 +1,5 @@
 import React from 'react'
-import {Person1, Person2, Person3, Testimonial} from '../images'
+import {Person1, Person2, Person3} from '../images'
 
 const Testimonials = () => {
   return (
