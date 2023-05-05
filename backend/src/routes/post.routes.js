@@ -99,7 +99,7 @@ router.route('/categoryshow/:id').get(auth, async (req, res) => {
 // * upload to cloudinary
 router.route('/').post(auth, async (req, res) => {
     try {
-        const { photoName, prompt, photo, isGlobal, category} = req.body;
+        const { photoName, prompt, photo, isGlobal, isWithAI, category} = req.body;
 
         console.log(req.body);
         // console.log(req.user);
@@ -117,6 +117,7 @@ router.route('/').post(auth, async (req, res) => {
         category,
         public_id:photoUrl.public_id,
         isGlobal,
+        isWithAI,
         owner:req.user._id
         });
 

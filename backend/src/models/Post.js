@@ -48,7 +48,7 @@ const PostSchema = new Schema({
         userId:{type:Schema.Types.ObjectId}
     }],
 
-    isWithAI:Boolean,
+    isWithAI:{type:Boolean, default:false},
 
     // conments:{
     //     type:Schema.Types.ObjectId,
