@@ -11,6 +11,7 @@ CLOUDINARY_API_SECRET=
 SECRETJWT=
 PORT=7000
 FRONTEND_ORIGIN=
+MONGODB_URI=
 
 
 AUTH_EMAIL=
@@ -24,7 +25,7 @@ PAYPAL_API=https://api-m.sandbox.paypal.com
 the **auth_email** and **pass** is for send the email verification.
 
 
-in the backend and the frontend folder run the command `cd folder npm i`
+go to the backend and the frontend folder and run the command `npm i`
 
 finaly to run this proyect you need to run the server and the server for the frontend.
 ```cmd
