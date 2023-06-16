@@ -3,7 +3,7 @@ import {headerToken, api_url} from './config'
 
 const getImgPost = async(id, setter) => {
     if (!id || id == '') {
-        window.location.replace('http://localhost:5173/home');
+        window.location.replace('/home');
     }
 
     try {

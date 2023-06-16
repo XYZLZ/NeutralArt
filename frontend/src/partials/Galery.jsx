@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Card} from '../components'
+import {api_url} from '../services'
 
 const RenderCards = ({data, title}) => {
   if (data?.length > 0) {
@@ -23,7 +24,7 @@ const Galery = () => {
       
 
     try {
-        const res = await fetch('http://localhost:7000/api/v1/post/public');
+        const res = await fetch(`${api_url}post/public`);
   
         if (res.ok) {
             const result = await res.json();

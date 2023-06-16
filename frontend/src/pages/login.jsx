@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import {Link} from 'react-router-dom';
+import {api_url} from '../services'
 
 const login = () => {
     const [data, setData] = useState({email:'', pass:''});
@@ -16,7 +17,7 @@ const login = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-        const url = 'http://localhost:7000/api/v1/user/login'
+        const url = `${api_url}user/login`
 
         const req = await fetch(url, {
             method:'POST',
@@ -51,7 +52,7 @@ const login = () => {
             sessionStorage.setItem('userEmail', res.user.email);
             sessionStorage.setItem('memberType', res.user.memberType);
             // navigate('/home');
-            window.location.replace('http://localhost:5173/home');
+            window.location.replace('/home');
         }
 
         } catch (error) {

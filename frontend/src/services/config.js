@@ -1,4 +1,4 @@
-const api_url = 'http://localhost:7000/api/v1/';
+const api_url = import.meta.env.VITE_API_URL;
 const headerToken = sessionStorage.getItem('token');
 const userEmail = sessionStorage.getItem('userEmail');
 const memberType = sessionStorage.getItem('memberType'); 
