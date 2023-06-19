@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {preview} from '../assets';
 import {SuccessAlert, getRandomPrompt} from '../utils';
 import {FormField, Loader} from '../components';
-import {headerToken, memberType} from '../services'
+import {api_url, headerToken, memberType} from '../services'
 
 const CreatePost = () => {
 
@@ -11,7 +11,7 @@ const CreatePost = () => {
 
   const getUser = async(e) => {
     try {
-        const res = await fetch(`http://localhost:7000/api/v1/user/id`, {
+        const res = await fetch(`${api_url}user/id`, {
         headers:{
             'authorization':`Bearer ${headerToken}`,
         }
@@ -45,7 +45,7 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
-        const res = await fetch('http://localhost:7000/api/v1/dalle', {
+        const res = await fetch(`${api_url}dalle`, {
           method:'POST',
           headers:{
             'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const CreatePost = () => {
         setLoading(true);
 
         try {
-          const res = await fetch('http://localhost:7000/api/v1/post', {
+          const res = await fetch(`${api_url}post`, {
             method:'POST',
             headers:{
               'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const CreatePost = () => {
       setLoadingPrivate(true);
 
       try {
-        const res = await fetch('http://localhost:7000/api/v1/post', {
+        const res = await fetch(`${api_url}post`, {
           method:'POST',
           headers:{
             'Content-Type': 'application/json',
@@ -114,7 +114,11 @@ const CreatePost = () => {
         })
 
         await res.json();
-        alert('Image created successfully');
+        SuccessAlert('success', 'Post Created', 'success', 3000)
+        setTimeout(()=>{
+          navigate('/my-post');
+        }, 4000)
+
       } catch (error) {
         console.log(error);
       } finally{

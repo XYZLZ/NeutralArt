@@ -89,7 +89,7 @@ const createFree = () => {
                 }
 
             try {
-                const res = await fetch('http://localhost:7000/api/v1/post', {
+                const res = await fetch(`${api_url}post`, {
                 method:'POST',
                 headers:{
                     'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ const createFree = () => {
                 setLoading(true);
 
                 try {
-                const res = await fetch('http://localhost:7000/api/v1/post', {
+                const res = await fetch(`${api_url}post`, {
                     method:'POST',
                     headers:{
                     'Content-Type': 'application/json',

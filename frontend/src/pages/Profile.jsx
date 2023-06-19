@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import {Header} from '../components';
 import {convertBase64, areYouSureAlert, SuccessAlert, inputAlert} from '../utils'
-import {deleteUser, headerToken, userEmail} from '../services'
+import {api_url, deleteUser, headerToken, userEmail} from '../services'
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Profile = () => {
 
     const getUser = async(e) => {
         try {
-            const res = await fetch(`http://localhost:7000/api/v1/user/id`, {
+            const res = await fetch(`${api_url}user/id`, {
             headers:{
                 'authorization':`Bearer ${headerToken}`,
             }
@@ -38,7 +38,7 @@ const Profile = () => {
         const handleSubmit = async(e) => {
             e.preventDefault();
             try {
-            const url = 'http://localhost:7000/api/v1/user/id'
+            const url = `${api_url}user/id`
         
             const req = await fetch(url, {
                 method:'PUT',

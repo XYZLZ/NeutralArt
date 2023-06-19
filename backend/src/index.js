@@ -32,6 +32,10 @@ app.use('/api/v1/payment', paymentRoutes);
 // * @luissototheedge
 // * default
 
+if (process.env.NODE_ENV == 'production') {
+    app.use(express.static('frontend/dist'))
+}
+
 app.use((req, res, next) => {
     res.send('Resourse not found');
 

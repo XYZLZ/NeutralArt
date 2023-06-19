@@ -5,7 +5,7 @@ import {Testimonial, Copy, Done, Heart, HeartColor} from '../images'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { downloadImage } from '../utils';
 import { download } from '../assets';
-import {getImgPost, getConments,  setLikes, getLikes, headerToken, userId} from '../services'
+import {getImgPost, getConments,  setLikes, getLikes, headerToken, userId, api_url} from '../services'
 
 
 const imageInfo = () => {
@@ -29,7 +29,7 @@ const imageInfo = () => {
         // const newCon = await newConment(sendText, id);
 
 
-        const res = await fetch(`http://localhost:7000/api/v1/conment`, {
+        const res = await fetch(`${api_url}conment`, {
             method:'POST',
             headers:{
                 'authorization':`Bearer ${headerToken}`,
@@ -53,7 +53,7 @@ const imageInfo = () => {
             setLoading(true);
             const post = await getImgPost(id, setData);
             try {
-                const res = await fetch(`http://localhost:7000/api/v1/post/categoryshow/${post.category}`,{
+                const res = await fetch(`${api_url}post/categoryshow/${post.category}`,{
                     method:'GET',
                     headers:{
                         'authorization':`Bearer ${headerToken}`
@@ -79,12 +79,12 @@ const imageInfo = () => {
     useEffect(()=>{
         (async()=>{
             if (!headerToken) {
-                window.location.replace('http://localhost:5173/login'); 
+                window.location.replace('/login'); 
                 
             }
             const {isGlobal, owner} = await getImgPost(id, setData);
     
-            if (isGlobal == false && owner._id != userId) {
+            if (isGlobal === false && owner._id != userId) {
                 navigate('/home');
             }
             await fetchPosts();
