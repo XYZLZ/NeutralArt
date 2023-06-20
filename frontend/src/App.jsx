@@ -21,7 +21,7 @@ const Landing = lazy(()=> import('./pages/Landing'));
 const Profile = lazy(()=> import('./pages/Profile'));
 const myPost = lazy(()=> import('./pages/myPost'));
 const imageInfo = lazy(()=> import('./pages/imageInfo'));
-const CreateFree = lazy(()=> import('./pages/CreateFree'));
+const CreateFree = lazy(()=> import('./pages/createFree'));
 const Plans = lazy(()=> import('./pages/Plans'));
 const ConfirmEmail = lazy(()=> import('./pages/ConfirmEmail'));
 const NotFound = lazy(()=> import('./pages/NotFound'));
