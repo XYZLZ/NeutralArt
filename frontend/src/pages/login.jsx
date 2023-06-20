@@ -51,8 +51,10 @@ const login = () => {
             sessionStorage.setItem('user', res.user.user);
             sessionStorage.setItem('userEmail', res.user.email);
             sessionStorage.setItem('memberType', res.user.memberType);
-            // navigate('/home');
-            window.location.replace('/home');
+            window.location.replace('/');
+            setTimeout(()=> {
+                navigate('/home');
+            }, 1000)    
         }
 
         } catch (error) {

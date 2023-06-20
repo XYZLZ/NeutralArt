@@ -21,8 +21,10 @@ const Logout = ({headerToken, propClass}) => {
                 sessionStorage.removeItem('user');
                 sessionStorage.removeItem('userEmail');
                 sessionStorage.removeItem('memberType');
-                // navigate('/login');
-                window.location.replace('/login');
+                window.location.replace('/');
+                setTimeout(()=> {
+                    navigate('/login');
+                }, 1000)    
             }
         } catch (error) {
             console.log(error);
