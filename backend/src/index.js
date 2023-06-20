@@ -7,11 +7,14 @@ import UserRoutes from './routes/user.routes.js';
 import CategoryRoutes from './routes/category.routes.js';
 import ConmentRoutes from './routes/conment.routes.js';
 import paymentRoutes from './routes/payment.routes.js'
+import {dirname, resolve} from 'path'
+import {fileURLToPath} from 'url'
 import './db/connect.js'
 
 // * settings
 const app = express();
 const port = process.env.PORT || 7000
+const __dirname = dirname(fileURLToPath(import.meta.url));
 config();
 
 // * middlewares
@@ -34,6 +37,10 @@ app.use('/api/v1/payment', paymentRoutes);
 
 if (process.env.NODE_ENV == 'production') {
     app.use(express.static('frontend/dist'))
+    app.get('*', (req, res)=>{
+        res.sendFile(resolve(__dirname, "../", "frontend", "dist", "index.html"))
+    })
+
 }
 
 app.use((req, res, next) => {
