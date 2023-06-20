@@ -15,7 +15,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // } from "./pages";
 const CreatePost = lazy(()=> import('./pages/CreatePost'));
 const Home = lazy(()=> import('./pages/Home'));
-const Login = lazy(()=> import('./pages/Login'));
+const Login = lazy(()=> import('./pages/login'));
 const Register = lazy(()=> import('./pages/Register'));
 const Landing = lazy(()=> import('./pages/Landing'));
 const Profile = lazy(()=> import('./pages/Profile'));
