@@ -1,6 +1,10 @@
 import UserModel from '../models/User.js';
 import Post from '../models/Post.js';
 import {config} from 'dotenv'
+import {dirname, resolve} from 'path'
+import {fileURLToPath} from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 config();
 
 // * verification by email
@@ -200,7 +204,7 @@ const userConfirm = async(req, res) => {
 
         await user.save();
 
-        res.status(200).json({success:true});
+        res.status(200).sendFile(resolve(__dirname, "../", "static", "redirect.html"))
 
 
     } catch (error) {
