@@ -15,16 +15,16 @@ const SuccessAlert = (title, text, icon = 'success', timer = 2000) => {
   });
 };
 
-const areYouSureAlert = (context)=> {
+const areYouSureAlert = (context, textBtn='Eliminar') => {
     return Swal.fire({
-      title: `Estas Seguro de eliminar este ${context}?`,
-      color:'#fff',
+      title: `Estas Seguro de ${context}?`,
+      color:'#444',
       html: '<span class="text-grey-400">No podras reviertir esto</span>',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: 'bg-[#6469ff]',
       cancelButtonColor: '#ee4444',
-      confirmButtonText: 'Eliminar',
+      confirmButtonText: textBtn,
       background: 'var(--white)',
   })
 }

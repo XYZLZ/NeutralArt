@@ -22,9 +22,10 @@ const delConment = async(_id) => {
     }
 }
 
-const replyConment = async(_id, text) => {
+const replyConment = async(_id, text, loading) => {
     // return console.log(text);
     try {
+        loading ? loading(true) : undefined;
         const res = await fetch(`${api_url}conment/reply/${_id}`, {
             method:'POST', 
             headers:{
@@ -44,12 +45,15 @@ const replyConment = async(_id, text) => {
 
         return false;
     } catch (error) {
-        
+        throw new Error('sonthing goes wrong' + error);
+    } finally{
+        loading ? loading(false) : undefined;
     }
 }
 
-const editConment = async(_id, text) => {
+const editConment = async(_id, text, loading) => {
     try {
+        loading ? loading(true) : undefined;
         const res = await fetch(`${api_url}conment/${_id}`, {
             method:'PUT', 
             headers:{
@@ -68,7 +72,9 @@ const editConment = async(_id, text) => {
 
         return false;
     } catch (error) {
-        
+        throw new Error('sonthing goes wrong' + error);
+    } finally {
+        loading ? loading(false) : undefined;
     }
 }
 

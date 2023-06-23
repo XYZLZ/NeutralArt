@@ -1,21 +1,28 @@
 import {api_url, headerToken} from './config'
 
-const getConments = async(setConments, id) => {
-    const res = await fetch(`${api_url}conment`, {
-        headers:{
-            'authorization':`Bearer ${headerToken}`
-        }
-    });
-
-    const data = await res.json();
-
-    const cpp = data.data.filter(conment => conment.postId === id);
-
-    setConments(cpp);
-    // console.log(data);
-    console.log('cpp', cpp);
-
-    return data;
+const getConments = async(setConments, id, loading) => {
+    try{
+        loading ? loading(true) : undefined;
+        const res = await fetch(`${api_url}conment`, {
+            headers:{
+                'authorization':`Bearer ${headerToken}`
+            }
+        });
+    
+        const data = await res.json();
+    
+        const cpp = data.data.filter(conment => conment.postId === id);
+    
+        setConments(cpp);
+        // console.log(data);
+        console.log('cpp', cpp);
+    
+        return data;
+    }catch(error) {
+        throw new Error('sonthing goes wrong' + error);
+    }finally{
+        loading ? loading(false) : undefined;
+    }
 }
 
 

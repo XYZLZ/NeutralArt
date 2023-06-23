@@ -8,7 +8,7 @@ import {setLikes, getLikes} from './likes'
 import {logout} from './logout'
 import {deleteUser} from './deleteUser'
 import {confirmEmail} from './confirm'
-
+import {sharePrivatePost} from './sharePost'
 export {
   api_url,
   memberType,
@@ -29,5 +29,6 @@ export {
   getLikes,
   logout,
   deleteUser,
-  confirmEmail
+  confirmEmail,
+  sharePrivatePost
 };

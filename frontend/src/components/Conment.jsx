@@ -115,7 +115,7 @@ const Conment = ({
                     setAffectedConment({ type: "delete", _id });
 
                     if (affectedConment?.type === "delete" && userId === id) {
-                      areYouSureAlert('commnent').then(async(res)=> {
+                      areYouSureAlert('eliminar este comentario').then(async(res)=> {
                         if (res.isConfirmed) {
                           const isDelComment = await delConment(_id);
         

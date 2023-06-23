@@ -6,7 +6,9 @@ import { ChatBubbleBottomCenterIcon } from "@heroicons/react/24/outline";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useNavigate, useLocation} from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import {userId} from '../services';
+import {Loader} from '../components';
+import {sharePrivatePost} from "../services";
+import {areYouSureAlert, SuccessAlert} from '../utils'
 
 const Card = ({
   _id,
@@ -24,6 +26,7 @@ const Card = ({
   const location = useLocation();
   const [copy, setCopy] = useState(false);
   const [heart, setHeart] = useState(false);
+  const [loading, setLoading] = useState(false);
   return (
     <div className="rounded-xl group relative shadow-card hover:shadow-cardhover card transform hover:scale-[1.02] transition-transform">
       <LazyLoadImage
@@ -48,9 +51,13 @@ const Card = ({
       )}
       {isGlobal === false && location.pathname != '/' &&(
         <div className="group-hover:flex flex-col max-h-[94.5%] hidden absolute top-0 right-0 bg-[#10131f] m-2 p-4 rounded-md">
-          <div>
-            <p className="text-white text-sm overflow-y-auto font-medium cursor-pointer">Share</p>
-          </div>
+            <button onClick={async()=>{areYouSureAlert('actualizar este post').then(async(res) =>{
+              if (res.isConfirmed) {
+                await sharePrivatePost(setLoading, _id);
+                SuccessAlert('Share post', 'share post successfuly', 'success', 3000);
+                // navigate('/home');
+              }
+            })}} className="text-white text-sm overflow-y-auto font-medium cursor-pointer">Share</button>
         </div>
       )}
       <div className="group-hover:flex flex-col max-h-[94.5%] hidden absolute bottom-0 left-0 right-0 bg-[#10131f] m-2 p-4 rounded-md">

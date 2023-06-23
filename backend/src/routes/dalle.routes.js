@@ -1,9 +1,9 @@
 import express from 'express';
-import * as dotenv from 'dotenv';
+import {config} from 'dotenv';
 import { Configuration, OpenAIApi } from 'openai';
 import auth from '../middlewares/auth.js';
 
-dotenv.config();
+config();
 
 const router = express.Router();
 
@@ -13,9 +13,6 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-router.route('/').get((req, res) => {
-    res.status(200).json({ message: 'Hello from DALL-E!' });
-});
 
 router.route('/').post(auth, async (req, res) => {
     try {

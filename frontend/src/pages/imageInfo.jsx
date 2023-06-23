@@ -17,6 +17,7 @@ const imageInfo = () => {
     const [searchResults, setSearchResults] = useState(null);
     const [searchTimeOut, setSearchTimeOut] = useState(null);
     const [conments, setConments] = useState(null);
+    const [loadingComment, setLoadingComment] = useState(false);
     const [copy, setCopy] = useState(false);
     const [heart, setHeart] = useState({state:false, counter:0});
     const [affectedConment, setAffectedConment] = useState({type:'', _id:''});
@@ -43,7 +44,7 @@ const imageInfo = () => {
         // console.log(data);
 
         if (data.success) {
-            getConments(setConments, id);
+            getConments(setConments, id, setLoadingComment);
             text.value = ''
         }
     }
@@ -186,8 +187,15 @@ const imageInfo = () => {
                     <ConmentForm handleSubmit={handleNewConment} formCancel={{state:false}} placeholder={'Leave your comment here'}/>
 
                     <p className='text-center text-xl text-gray-700 font-bold'>All conments</p>
+                    {loadingComment ? (
+                        <div className='flex justify-center'>
+                        <Loader/>
+                    </div>
+                    ) :(
+                        
+                        <RenderConments setConments={setConments} postId={id} data={conments}  title={'Not conments'} setAffectedConment={setAffectedConment} affectedConment={affectedConment} />
+                    )}
 
-                    <RenderConments setConments={setConments} postId={id} data={conments}  title={'Not conments'} setAffectedConment={setAffectedConment} affectedConment={affectedConment} />
                 </div>
 
 
