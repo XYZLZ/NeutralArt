@@ -1,5 +1,5 @@
 import {surpriseMePrompts} from '../constant';
-import fileSaver from 'file-saver';
+import {saveAs} from 'file-saver';
 export  {SuccessAlert, areYouSureAlert, purchaseAlert, inputAlert} from './Alerts'
 
 export function getRandomPrompt(prompt) {
@@ -25,6 +25,6 @@ export const convertBase64 = (file) => {
 }
 
   export async function downloadImage(_id, photo) { 
-    fileSaver.saveAs(photo, `download-${_id}.jpg`);
+    saveAs(photo, `download-${_id}.jpg`);
   }
 

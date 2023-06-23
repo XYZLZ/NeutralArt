@@ -30,6 +30,7 @@ const CreatePost = () => {
       navigate('/login');
     }
 
+    // todo: comprobar desde la base de datos.
     if (memberType == "BASIC" || memberType == null) {
       navigate('/home');
     }
