@@ -6,7 +6,7 @@ import { getConments, newConment } from "./getConments";
 import { delConment, editConment, replyConment } from "./conmentsActions";
 import {setLikes, getLikes} from './likes'
 import {logout} from './logout'
-import {deleteUser} from './deleteUser'
+import {deleteUser, memberTypeCheck} from './userActions'
 import {confirmEmail} from './confirm'
 import {sharePrivatePost} from './sharePost'
 export {
@@ -29,6 +29,7 @@ export {
   getLikes,
   logout,
   deleteUser,
+  memberTypeCheck,
   confirmEmail,
   sharePrivatePost
 };

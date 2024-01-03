@@ -3,40 +3,54 @@ import {useNavigate} from 'react-router-dom';
 import {preview} from '../assets';
 import {SuccessAlert, getRandomPrompt} from '../utils';
 import {FormField, Loader} from '../components';
-import {api_url, headerToken, memberType} from '../services'
+import {api_url, headerToken} from '../services'
+import {userApi} from '../redux/api'
+import { useSelector } from 'react-redux';
+
+const {useGetUserQuery} = userApi;
+
 
 const CreatePost = () => {
-
+  const {data: userData, isSuccess} = useGetUserQuery();
+  // const selector = useSelector((state) => state.users);
+  // console.log(userData);
   const navigate = useNavigate();
 
-  const getUser = async(e) => {
-    try {
-        const res = await fetch(`${api_url}user/id`, {
-        headers:{
-            'authorization':`Bearer ${headerToken}`,
-        }
-        })
-        const data = await res.json();
-        const {user} = data.data;
-        setForm({name:user});
-        console.log(data);
-    } catch (error) {
-        console.log(error);
-    }
-}
-  
+//   const getUser = async(e) => {
+//     try {
+//         const res = await fetch(`${api_url}user/id`, {
+//         headers:{
+//             'authorization':`Bearer ${headerToken}`,
+//         }
+//         })
+//         const data = await res.json();
+//         const {user} = data.data;
+//         setForm({name:user});
+//         console.log(data);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
   useEffect(()=>{
     if(!headerToken){
       navigate('/login');
     }
+    
+    if (isSuccess) {
+      const {data: user} = userData;
+      setForm({name:user.user})
 
-    // todo: comprobar desde la base de datos.
-    if (memberType == "BASIC" || memberType == null) {
-      navigate('/home');
+      if (user.memberType == "BASIC" || user.memberType == null) {
+        navigate('/home');
+      }
+      // console.log(selector.queries['getUser']);
     }
 
-    getUser();
+    // getUser();
   }, [])
+
+
   const [form, setForm] = useState({name:'',photo:'',prompt:'', photoName:'', category:''})
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false)
