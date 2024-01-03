@@ -43,7 +43,7 @@ const createUser = async(req, res) => {
     const code = uuid();
 
     try {
-        const newUser = new UserModel({user, email, pass, code})
+        const newUser = new UserModel({user, email, pass, code, verified:true})
         
 
         // const token = setToken({email, code});
