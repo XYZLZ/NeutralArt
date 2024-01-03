@@ -44,14 +44,15 @@ const createUser = async(req, res) => {
 
     try {
         const newUser = new UserModel({user, email, pass, code})
+        
 
-        const token = setToken({email, code});
+        // const token = setToken({email, code});
 
-        const template = getHtml(user, token);
+        // const template = getHtml(user, token);
 
-        await sendVerificationMAil(email, template);
-
-
+        // await sendVerificationMAil(email, template);
+        
+        // console.log(newUser);
         await newUser.save()
         res.status(201).json({newUser, success:'Se ha enviado un correo por favor verificalo'});
 
@@ -59,7 +60,7 @@ const createUser = async(req, res) => {
     } catch (error) {
         res.status(500).json({
             message:'Somthing goes wrong on the server (createUser)',
-            error
+            error: error.message
         })
     }
 }

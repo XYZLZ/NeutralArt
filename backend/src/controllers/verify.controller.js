@@ -31,9 +31,9 @@ let transporter = createTransport({
         pass:process.env.AUTH_PASS 
     },
 
-    // tls:{
-    //     rejectUnauthorized:false
-    // }
+    tls:{
+        rejectUnauthorized:false
+    }
     
 })
 
